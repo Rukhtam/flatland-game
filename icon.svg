@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#0D1117"/>
+  <g transform="translate(64, 64)">
+    <!-- A. Square - the protagonist -->
+    <rect x="-24" y="-24" width="48" height="48" fill="#3A86FF" stroke="#3A86FF" stroke-width="2"/>
+    <!-- Dimensional lines suggesting the shift mechanic -->
+    <line x1="-50" y1="0" x2="-30" y2="0" stroke="#8338EC" stroke-width="2" opacity="0.7"/>
+    <line x1="30" y1="0" x2="50" y2="0" stroke="#8338EC" stroke-width="2" opacity="0.7"/>
+    <line x1="0" y1="-50" x2="0" y2="-30" stroke="#8338EC" stroke-width="2" opacity="0.7"/>
+    <line x1="0" y1="30" x2="0" y2="50" stroke="#8338EC" stroke-width="2" opacity="0.7"/>
+  </g>
+</svg>
