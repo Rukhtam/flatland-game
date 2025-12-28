@@ -207,6 +207,80 @@ The foundation is built using:
 
 ---
 
-**Last Updated**: December 27, 2025
+**Last Updated**: December 28, 2025
 **Next Checkpoint**: January 3, 2026 (Week 1 complete)
 **Status**: 🟢 Ahead of Schedule
+
+---
+
+## Day 2 - December 28, 2025
+
+### Completed Tasks
+
+#### 1. Dimension Shift Visual Effect
+- [x] Implemented screen flash effect when shifting dimensions
+  - Purple flash (#8338EC) when shifting to Top View
+  - Blue flash (#3A86FF) when shifting to Edge View
+- [x] Added background color change between dimensions
+  - Edge View: Dark blue-grey (#0D1117)
+  - Top View: Deep purple (#1E0D26)
+- [x] Created smooth transition with tween animations
+- [x] Added transition overlay using CanvasLayer
+
+#### 2. UI Enhancements
+- [x] Updated dimension indicator with color animation
+  - Blue text for Edge View
+  - Purple text for Top View
+- [x] Added scale pulse effect on dimension change
+- [x] Updated controls hint to show dimension shift key (E)
+- [x] Enabled dimension shifting in Level 1-1
+
+#### 3. Player Improvements
+- [x] Fixed dimension shift handling - player now calls DimensionManager directly
+- [x] Added visual feedback when shift is blocked (mid-air):
+  - Red flash on player sprite
+  - Small horizontal shake effect
+- [x] Dimension shift only works when grounded (as designed)
+
+#### 4. Level 1-2 Created
+- [x] New level with dimensional platform puzzle
+- [x] Introduced DimensionalPlatform script for platforms that:
+  - Only exist in Edge View (blue platforms)
+  - Only exist in Top View (purple platforms)
+- [x] Platforms fade in/out with ghost effect when inactive
+- [x] Added tutorial hint explaining dimension-specific platforms
+- [x] Goal platform at end of level
+
+#### 5. Bug Fixes
+- [x] Fixed collision layer/mask setup on Level 1-1 platforms
+- [x] Removed duplicate input handling from DimensionManager
+- [x] Ensured proper signal cleanup on node exit
+
+### New Files Created
+- `scripts/objects/dimensional_platform.gd` - Platform that responds to dimension changes
+- `scenes/levels/world_1/level_1_2.tscn` - Second level with puzzle mechanics
+
+### Files Modified
+- `scripts/autoloads/dimension_manager.gd` - Added visual effects, background color system
+- `scripts/player/player.gd` - Fixed dimension shift input, added blocked feedback
+- `scripts/levels/base_level.gd` - Enhanced dimension indicator UI updates
+- `scenes/levels/world_1/level_1_1.tscn` - Enabled dimension shifting, fixed collisions
+
+---
+
+## Current Status After Day 2
+
+### Implemented Features
+- Player movement and physics
+- Main menu with navigation
+- Level 1-1 and Level 1-2 playable
+- **Dimension shift with visual effects** (NEW)
+- **Background color changes between dimensions** (NEW)
+- **Dimensional platforms that fade in/out** (NEW)
+- UI system (menus, pause, level select)
+- Global game management system
+
+### Week 1 Progress
+- Day 1: Core architecture, Level 1-1 (50%)
+- Day 2: Dimension shift visuals, Level 1-2 (85%)
+- Remaining: Polish, Level 1-3, audio placeholders
