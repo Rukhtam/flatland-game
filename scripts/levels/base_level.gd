@@ -66,13 +66,32 @@ func _setup_player() -> void:
 		camera.position = Vector2.ZERO
 
 
-func _on_dimension_changed(_new_dimension: DimensionManager.Dimension) -> void:
-	_update_dimension_indicator()
+func _on_dimension_changed(new_dimension: DimensionManager.Dimension) -> void:
+	_update_dimension_indicator(new_dimension)
 
 
-func _update_dimension_indicator() -> void:
-	if dimension_indicator:
-		dimension_indicator.text = DimensionManager.get_dimension_name(DimensionManager.current_dimension)
+func _update_dimension_indicator(dimension: DimensionManager.Dimension = DimensionManager.current_dimension) -> void:
+	if not dimension_indicator:
+		return
+
+	dimension_indicator.text = DimensionManager.get_dimension_name(dimension)
+
+	# Update indicator color based on dimension
+	var target_color: Color
+	if dimension == DimensionManager.Dimension.EDGE_VIEW:
+		target_color = Color(0.227, 0.525, 1.0)  # Blue for Edge View (#3A86FF)
+	else:
+		target_color = Color(0.514, 0.224, 0.925)  # Purple for Top View (#8338EC)
+
+	# Animate the color change
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(dimension_indicator, "theme_override_colors/font_color", target_color, 0.2)
+
+	# Add a subtle scale pulse effect
+	tween.parallel().tween_property(dimension_indicator, "scale", Vector2(1.1, 1.1), 0.1)
+	tween.tween_property(dimension_indicator, "scale", Vector2(1.0, 1.0), 0.15)
 
 
 ## Called when player reaches the level exit

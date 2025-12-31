@@ -28,7 +28,8 @@ const COLOR_TOP_VIEW := Color("#FFB703")
 ## --- PHYSICS ---
 ## Default player physics values (can be overridden via exports)
 const PLAYER_SPEED := 200.0
-const PLAYER_JUMP_VELOCITY := -350.0
+## Jump velocity tuned for ~127 pixel max jump height
+const PLAYER_JUMP_VELOCITY := -500.0
 const PLAYER_GRAVITY := 980.0
 
 ## --- GRID ---

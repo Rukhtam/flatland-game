@@ -10,7 +10,8 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 
 ## Jump velocity (negative for upward movement)
-@export var jump_velocity: float = -350.0
+## Max jump height approx: v^2 / (2*g) = 500^2 / (2*980) = ~127 pixels
+@export var jump_velocity: float = -500.0
 
 ## Gravity acceleration
 @export var gravity: float = 980.0
@@ -151,9 +152,8 @@ func _handle_dimension_shift() -> void:
 
 	if Input.is_action_just_pressed("shift_dimension"):
 		if is_on_floor():
-			# Let DimensionManager handle the actual shift
-			# The input will be caught by its _unhandled_input
-			pass
+			# Request dimension shift through the manager
+			DimensionManager.request_dimension_shift()
 		else:
 			# Visual/audio feedback that shift is blocked
 			_on_shift_blocked()
@@ -161,7 +161,20 @@ func _handle_dimension_shift() -> void:
 
 func _on_shift_blocked() -> void:
 	## Called when player tries to shift mid-air
-	# TODO: Add screen shake, sound effect, or visual indicator
+	# Visual feedback: Flash the player sprite red briefly
+	if sprite:
+		var original_modulate = sprite.modulate
+		var tween = create_tween()
+		tween.tween_property(sprite, "modulate", Color(1, 0.3, 0.3), 0.05)
+		tween.tween_property(sprite, "modulate", original_modulate, 0.15)
+
+	# Small horizontal shake effect
+	var original_pos = position
+	var tween = create_tween()
+	tween.tween_property(self, "position", original_pos + Vector2(-3, 0), 0.03)
+	tween.tween_property(self, "position", original_pos + Vector2(3, 0), 0.03)
+	tween.tween_property(self, "position", original_pos, 0.03)
+
 	print("[Player] Dimension shift blocked - not grounded")
 
 
